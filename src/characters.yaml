@@ -1,0 +1,47 @@
+- name: Noble's Bodyguard 1
+  stats:
+    brawn: 4
+    resolve: 4
+  armour:
+    head:
+      name: Steel Helmet with Mail
+      protection:
+        slashing: 36
+        piercing: 24
+        blunt: 24
+      hit_points: 32
+    torso:
+      name: Lamellar Vest
+      protection:
+        slashing: 30
+        piercing: 18
+        blunt: 18
+      hit_points: 38
+    shoulders:
+      name: Plate Pauldrons
+      protection:
+        slashing: 36
+        piercing: 24
+        blunt: 24
+      hit_points: 35
+    feet:
+      name: Leather Boots
+      protection:
+        slashing: 5
+      hit_points: 13
+- name: Irhukhshun
+  stats:
+    brawn: 3
+    resolve: 2
+  armour:
+    torso:
+      name: Studded Leather Vest
+      protection:
+        slashing: 6
+        blunt: 6
+      hit_points: 5
+    feet:
+      name: Leather Boots
+      protection:
+        slashing: 5
+      hit_points: 13

@@ -1,12 +1,13 @@
 {
   "name": "armour-app",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Simple armour calculations in a desktop UI.",
   "main": "main.js",
   "author": "bm424",
   "license": "MIT",
   "scripts": {
-    "start": "electron-forge start",
+    "dev": "gleam run -m lustre/dev start",
+    "start": "gleam run -m lustre/dev build app --minify && electron-forge start",
     "package": "electron-forge package",
     "make": "gleam run -m lustre/dev build app --minify && electron-forge make"
   },
@@ -19,6 +20,7 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron/fuses": "^1.8.0",
+    "daisyui": "^4.12.10",
     "electron": "^32.0.1"
   },
   "dependencies": {

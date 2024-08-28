@@ -17,28 +17,37 @@ jobs:
         uses: actions/checkout@v4
 
       # Install dependencies for Ubuntu
-      - name: Install Gleam and npm on Ubuntu
+      - name: Install Gleam on Ubuntu
         if: matrix.os == 'ubuntu-latest'
-        run: |
-          curl -sSL https://gleam.run/install.sh | bash
-          sudo apt-get install -y npm
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "26.0.2"
+          gleam-version: "1.4.1"
+          rebar3-version: "3"
 
       # Install dependencies for macOS
-      - name: Install Gleam and npm on macOS
+      - name: Install Gleam on macOS
         if: matrix.os == 'macos-latest'
         run: |
+          brew update
           brew install gleam
-          brew install npm
 
       # Install dependencies for Windows
-      - name: Install Gleam and npm on Windows
+      - name: Install Gleam on Windows         
         if: matrix.os == 'windows-latest'
-        run: |
-          curl -sSL https://gleam.run/install.ps1 | powershell
-          choco install nodejs
+        uses: erlef/setup-beam@v1
+        with:
+          otp-version: "26.0.2"
+          gleam-version: "1.4.1"
+          rebar3-version: "3"
+
+      - uses: actions/setup-node@v4
+        name: Set up node
+        with:
+          node-version: 18
 
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run npm make
         run: npm run make

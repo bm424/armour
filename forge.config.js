@@ -46,8 +46,8 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'me',
-          name: 'awesome-thing'
+          owner: 'bm424',
+          name: 'armour'
         },
         prerelease: true
       }

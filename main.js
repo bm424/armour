@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron')
+const { updateElectronApp } = require('update-electron-app');
+updateElectronApp(); // additional configuration options available
 
 const createWindow = () => {
     const win = new BrowserWindow({width: 800, height: 600})

@@ -5,7 +5,7 @@
         "extra-files": [
             {
                 "type": "toml",
-                "path": "gleam.toml"
+                "path": "./gleam.toml"
             }
         ]
       }

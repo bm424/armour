@@ -1,6 +1,6 @@
 {
   "name": "armour",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple armour calculations in a desktop UI.",
   "main": "main.js",
   "author": "bm424",

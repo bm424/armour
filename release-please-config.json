@@ -2,12 +2,7 @@
     "packages": {
       ".": {
         "release-type": "node",
-        "extra-files": [
-            {
-                "type": "toml",
-                "path": "./gleam.toml"
-            }
-        ]
+        "extra-files": ["gleam.toml"]
       }
     }
   }

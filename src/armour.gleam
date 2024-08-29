@@ -1,9 +1,9 @@
-import attack.{type Attack, type ValidatedAttack, Attack, ValidatedAttack}
-import body_part.{type BodyPart, Feet, Head, Legs, Shoulders, Torso}
-import character.{type Character, NPC}
-import damage_kind.{type DamageKind, Blunt, Piercing, Slashing}
+import attack.{type Attack, Attack}
+import body_part
+import character.{type Character}
+import damage_kind
 import gleam/dict.{type Dict}
-import gleam/dynamic.{dict, field, int, list, string}
+import gleam/dynamic.{dict, int, list}
 import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
@@ -123,7 +123,11 @@ pub fn update(model: Model, message: Message) -> Model {
         character.list_from_json(character_value)
         |> result.unwrap([])
         |> enumerate
-      Running(characters, None, Attack(Ok(Slashing), Ok(Head), Ok(0)))
+      Running(
+        characters,
+        None,
+        Attack(Ok(damage_kind.Slashing), Ok(body_part.Head), Ok(0)),
+      )
     }
     UserSelectedDamageKind(damage_kind_label),
       Running(characters, selected_character, attack)
@@ -168,7 +172,7 @@ pub fn update(model: Model, message: Message) -> Model {
       }
     }
     UserSelectedCharacter(character_label),
-      Running(characters, selected_character, attack)
+      Running(characters, _selected_character, attack)
     -> {
       case int.parse(character_label) {
         Error(_) -> model

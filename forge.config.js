@@ -49,7 +49,9 @@ module.exports = {
           owner: 'bm424',
           name: 'armour'
         },
-        prerelease: false
+        prerelease: false,
+        draft: false,
+        generateReleaseNotes: false
       }
     }
   ]

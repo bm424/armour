@@ -16,20 +16,21 @@ pub fn damage(character: Character, attack: ValidatedAttack) -> Character {
   let amount = attack.amount
   case dict.get(character.armour.items, body_part) {
     Error(_) -> NPC(..character, damage_taken: amount)
-    Ok(armour_item) -> {
-      case dict.get(armour_item.protection, damage_kind) {
+    Ok(BrokenItem(_name)) -> NPC(..character, damage_taken: amount)
+    Ok(ArmourItem(name, protection, hit_points)) -> {
+      case dict.get(protection, damage_kind) {
         Error(_) -> NPC(..character, damage_taken: amount)
-        Ok(protection) -> {
-          let absorbed = int.min(armour_item.hit_points, protection)
+        Ok(local_protection) -> {
+          let absorbed = int.min(hit_points, local_protection)
           let #(damage_dealt, absorbed) = case amount >= absorbed {
             True -> #(amount - absorbed, absorbed)
             False -> #(0, amount)
           }
-          let armour_item =
-            ArmourItem(
-              ..armour_item,
-              hit_points: armour_item.hit_points - absorbed,
-            )
+          let hit_points = hit_points - absorbed
+          let armour_item = case hit_points {
+            0 -> BrokenItem(name)
+            _ -> ArmourItem(name, protection, hit_points)
+          }
           let armour =
             Armour(dict.insert(character.armour.items, body_part, armour_item))
           NPC(..character, armour: armour, damage_taken: damage_dealt)
@@ -85,6 +86,7 @@ fn decode_armour(dynamic: Dynamic) -> Result(Armour, List(dynamic.DecodeError)) 
 }
 
 pub type ArmourItem {
+  BrokenItem(name: String)
   ArmourItem(
     name: String,
     protection: dict.Dict(DamageKind, Int),

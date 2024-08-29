@@ -249,12 +249,15 @@ fn character_detail(character: Option(Character)) -> element.Element(Message) {
                 |> dict.to_list
                 |> list.map(fn(item) {
                   let #(body_part, armour_item) = item
+                  let hit_points_label = case armour_item {
+                    character.BrokenItem(_) -> "Broken!"
+                    character.ArmourItem(hit_points: hit_points, ..) ->
+                      int.to_string(hit_points)
+                  }
                   html.tr([], [
                     html.td([], [html.text(armour_item.name)]),
                     html.td([], [html.text(body_part.to_string(body_part))]),
-                    html.td([], [
-                      html.text(int.to_string(armour_item.hit_points)),
-                    ]),
+                    html.td([], [html.text(hit_points_label)]),
                   ])
                 }),
             ),

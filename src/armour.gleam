@@ -23,8 +23,17 @@ pub type Model {
   )
 }
 
+fn parse_to_running(data: String) -> Model {
+  let characters =
+    character.list_from_json(data) |> result.unwrap([]) |> enumerate
+  let selected_character = None
+  let attack =
+    attack.Attack(Ok(damage_kind.Slashing), Ok(body_part.Head), Ok(0))
+  Running(characters, selected_character, attack)
+}
+
 fn init(_flags) -> Model {
-  Importing(
+  parse_to_running(
     "[
   {
       \"name\": \"Noble's Bodyguard 1\",
@@ -216,9 +225,9 @@ pub fn view(model: Model) -> element.Element(Message) {
         }
       }
 
-      html.div([attribute.class("flex flex-row w-full gap-4 p-4")], [
-        characters_table(characters, selected_character_id),
-        html.div([attribute.class("flex flex-row w-full gap-4")], [
+      html.div([attribute.class("flex w-full h-screen")], [
+        html.div([attribute.class("flex flex-row w-full")], [
+          characters_table(characters, selected_character_id),
           character_detail(selected_character),
           attack_form(attack),
         ]),
@@ -230,14 +239,14 @@ pub fn view(model: Model) -> element.Element(Message) {
 fn character_detail(character: Option(Character)) -> element.Element(Message) {
   case character {
     None ->
-      html.div([attribute.class("flex-1 text-center")], [
+      html.div([attribute.class("basis-1/3 text-center bg-base-200 p-4")], [
         html.p([], [html.text("No character selected.")]),
       ])
     Some(character) ->
-      html.div([attribute.class("flex-1")], [
+      html.div([attribute.class("basis-1/3 bg-base-200 p-4")], [
         html.p([attribute.class("mb-6")], [html.text(character.name)]),
         html.div([attribute.class("flex flex-col gap-2")], [
-          html.table([attribute.class("table")], [
+          html.table([attribute.class("table border-t border-b")], [
             html.thead([], [
               html.th([], [html.text("Item")]),
               html.th([], [html.text("Protection")]),
@@ -280,8 +289,8 @@ pub fn characters_table(
   characters: Dict(Int, Character),
   selected_character: Option(Int),
 ) -> element.Element(Message) {
-  html.div([attribute.class("flex-initial")], [
-    html.p([attribute.class("mb-6")], [html.text("Characters")]),
+  html.div([attribute.class("basis-1/3 bg-base-300")], [
+    html.p([attribute.class("mb-6 p-4")], [html.text("Characters")]),
     html.table([attribute.class("table")], [
       html.tbody(
         [],
@@ -289,19 +298,25 @@ pub fn characters_table(
           |> dict.to_list
           |> list.map(fn(id_character) {
             let #(id, character) = id_character
-            html.tr([], [
-              html.td([], [
-                html.input([
-                  attribute.type_("radio"),
-                  attribute.name("selected"),
-                  attribute.class("radio radio-sm"),
-                  attribute.value(int.to_string(id)),
-                  attribute.checked(Some(id) == selected_character),
-                  event.on_input(UserSelectedCharacter),
+            html.tr(
+              [
+                attribute.class("hover cursor-pointer"),
+                event.on_click(UserSelectedCharacter(int.to_string(id))),
+              ],
+              [
+                html.td([attribute.class("pl-4")], [
+                  html.input([
+                    attribute.type_("radio"),
+                    attribute.name("selected"),
+                    attribute.class("radio radio-sm"),
+                    attribute.value(int.to_string(id)),
+                    attribute.checked(Some(id) == selected_character),
+                    event.on_input(UserSelectedCharacter),
+                  ]),
                 ]),
-              ]),
-              html.td([], [html.text(character.name)]),
-            ])
+                html.td([attribute.class("pr-4")], [html.text(character.name)]),
+              ],
+            )
           }),
       ),
     ]),
@@ -320,7 +335,7 @@ pub fn attack_form(attack: Attack) -> element.Element(Message) {
   let amount_value =
     attack.amount |> result.map(int.to_string) |> result.unwrap("")
 
-  html.div([attribute.class("flex-1")], [
+  html.div([attribute.class("basis-1/3 p-4")], [
     html.p([attribute.class("mb-6")], [html.text("Attack")]),
     html.div([attribute.class("flex flex-col gap-2")], [
       html.label([attribute.class("form-control")], [

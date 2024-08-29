@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/bm424/armour/compare/armour-v0.3.1...armour-v0.4.0) (2024-08-29)
+
+
+### Features
+
+* improve styling ([77a599a](https://github.com/bm424/armour/commit/77a599a9b11dcfd7222ac58e3de13824778c387b))
+
 ## [0.3.1](https://github.com/bm424/armour/compare/armour-v0.3.0...armour-v0.3.1) (2024-08-29)
 
 

@@ -51,7 +51,8 @@ module.exports = {
         },
         prerelease: false,
         draft: false,
-        generateReleaseNotes: false
+        generateReleaseNotes: false,
+        tagPrefix: "armour-v"
       }
     }
   ]

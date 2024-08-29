@@ -1,5 +1,6 @@
 name: Release Action
 
+
 on:
   release:
     types:
@@ -11,6 +12,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+
+    permissions: write-all
 
     steps:
       - name: Checkout code

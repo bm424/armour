@@ -1,5 +1,5 @@
 {
-  "name": "armour-app",
+  "name": "armour",
   "version": "0.0.1",
   "description": "Simple armour calculations in a desktop UI.",
   "main": "main.js",

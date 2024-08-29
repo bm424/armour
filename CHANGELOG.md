@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/bm424/armour/compare/armour-v0.1.0...armour-v0.2.0) (2024-08-29)
+
+
+### Features
+
+* add support for broken armour items ([ed6f198](https://github.com/bm424/armour/commit/ed6f198ba3de3000050bd5d1415ead01b1b26f39))
+
 ## [0.1.0](https://github.com/bm424/armour/compare/armour-v0.0.3...armour-v0.1.0) (2024-08-29)
 
 

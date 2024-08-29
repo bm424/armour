@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/bm424/armour/compare/armour-v0.3.0...armour-v0.3.1) (2024-08-29)
+
+
+### Bug Fixes
+
+* start in the importing state ([b095581](https://github.com/bm424/armour/commit/b095581dedd4c25da2a1351f105cfb26385e62bc))
+
 ## [0.3.0](https://github.com/bm424/armour/compare/armour-v0.2.0...armour-v0.3.0) (2024-08-29)
 
 

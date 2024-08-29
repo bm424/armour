@@ -32,8 +32,8 @@ fn parse_to_running(data: String) -> Model {
   Running(characters, selected_character, attack)
 }
 
-fn init(_flags) -> Model {
-  parse_to_running(
+pub fn init(_flags) -> Model {
+  Importing(
     "[
   {
       \"name\": \"Noble's Bodyguard 1\",

@@ -1,3 +1,4 @@
+import armour
 import gleeunit
 import gleeunit/should
 
@@ -5,8 +6,14 @@ pub fn main() {
   gleeunit.main()
 }
 
-// gleeunit test functions end in `_test`
-pub fn hello_world_test() {
-  1
-  |> should.equal(1)
+fn is_importing(model: armour.Model) {
+  case model {
+    armour.Importing(_) -> True
+    _ -> False
+  }
+}
+
+// the app should start in the right state
+pub fn init_test() {
+  armour.init(Nil) |> is_importing |> should.be_true
 }

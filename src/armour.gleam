@@ -239,13 +239,17 @@ pub fn view(model: Model) -> element.Element(Message) {
 fn character_detail(character: Option(Character)) -> element.Element(Message) {
   case character {
     None ->
-      html.div([attribute.class("basis-1/3 text-center bg-base-200 p-4")], [
-        html.p([], [html.text("No character selected.")]),
+      html.div([attribute.class("basis-1/3 text-center bg-base-200")], [
+        html.p([attribute.class("p-4 border-b border-base-100")], [
+          html.text("No character selected."),
+        ]),
       ])
     Some(character) ->
-      html.div([attribute.class("basis-1/3 bg-base-200 p-4")], [
-        html.p([attribute.class("mb-6")], [html.text(character.name)]),
-        html.div([attribute.class("flex flex-col gap-2")], [
+      html.div([attribute.class("basis-1/3 bg-base-200")], [
+        html.p([attribute.class("p-4 border-b border-base-100")], [
+          html.text(character.name),
+        ]),
+        html.div([attribute.class("flex flex-col gap-2  p-4")], [
           html.table([attribute.class("table border-t border-b")], [
             html.thead([], [
               html.th([], [html.text("Item")]),
@@ -290,7 +294,9 @@ pub fn characters_table(
   selected_character: Option(Int),
 ) -> element.Element(Message) {
   html.div([attribute.class("basis-1/3 bg-base-300")], [
-    html.p([attribute.class("mb-6 p-4")], [html.text("Characters")]),
+    html.p([attribute.class("mb-6 p-4 border-b border-base-100")], [
+      html.text("Characters"),
+    ]),
     html.table([attribute.class("table")], [
       html.tbody(
         [],
@@ -335,9 +341,11 @@ pub fn attack_form(attack: Attack) -> element.Element(Message) {
   let amount_value =
     attack.amount |> result.map(int.to_string) |> result.unwrap("")
 
-  html.div([attribute.class("basis-1/3 p-4")], [
-    html.p([attribute.class("mb-6")], [html.text("Attack")]),
-    html.div([attribute.class("flex flex-col gap-2")], [
+  html.div([attribute.class("basis-1/3")], [
+    html.p([attribute.class("p-4 border-b border-base-200")], [
+      html.text("Attack"),
+    ]),
+    html.div([attribute.class("p-4 flex flex-col gap-2")], [
       html.label([attribute.class("form-control")], [
         html.label([], [html.text("Type")]),
         html.select(

@@ -22,7 +22,7 @@
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron-forge/publisher-github": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "daisyui": "^4.12.10",
+    "daisyui": "^5.0.0",
     "electron": "^32.0.1"
   },
   "dependencies": {
